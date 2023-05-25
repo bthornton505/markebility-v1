@@ -12,7 +12,7 @@ const Header = ({ siteTitle }) => (
     }}
   >
     <Link
-      to="/"
+      to="https://markebility.com/"
       style={{
         fontSize: `var(--font-sm)`,
         textDecoration: `none`,
