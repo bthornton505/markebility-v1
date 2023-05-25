@@ -44,8 +44,8 @@
   margin-top: var(--space-1);
 }
 
-.textCenter {
-  text-align: center;
+.textLeft {
+  text-align: left;
 }
 
 .intro {
