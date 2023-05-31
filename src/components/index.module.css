@@ -52,3 +52,8 @@
   max-width: none;
   line-height: var(--line-height-loose);
 }
+
+button:hover {
+    color: rgb(123, 220, 124) !important;
+    background-color: white !important;
+}
