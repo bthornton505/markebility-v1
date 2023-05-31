@@ -21,6 +21,12 @@ const links = [
   }
 ]
 
+const howItWorks = [
+  'Fill in our short questionnaire to give us insights about your business.',
+  'Our advanced AI analyzes your inputs and formulates a bespoke marketing strategy.',
+  'You receive a detailed strategy, ready to be implemented!'
+]
+
 const IndexPage = () => (
   <Layout>
     <div className={styles.textLeft}>
@@ -33,29 +39,44 @@ const IndexPage = () => (
         actionable marketing strategy.
       </p>
 
-      <div className="row my-5">
-        <h5>
-          How it works:
-        </h5>
-        <div className="col-md-4 mt-3">
-          Fill in our short questionnaire to give us insights about your business.
-        </div>
-        {/* <div style={{borderLeft: '6px solid green', height: '500px'}}></div> */}
-        <div className="col-md-4 mt-3">
-          Our advanced AI analyzes your inputs and formulates a bespoke marketing strategy.
-        </div>
-        {/* <div style={{borderLeft: '6px solid green', height: '500px'}}></div> */}
-        <div className="col-md-4 mt-3">
-          You receive a detailed strategy, ready to be implemented!
-        </div>
-      </div>
-    </div>
-    <div className={styles.textLeft}>
       <Link to="/survey" style={{
         textDecoration: 'none'
       }}>
         <Button name={'Start Now'}/>
       </Link>
+
+      <div className="mt-5">
+        <h5>
+          How it works:
+        </h5>
+        <ol className="row px-3">
+          {howItWorks.map((item) => {
+            return (
+              <div className="col-md-4 mt-3">
+                <li>{item}</li>
+              </div>
+            )
+          })}
+        </ol>
+        {/* <div className="col-md-4 mt-3">
+          Fill in our short questionnaire to give us insights about your business.
+        </div> */}
+        {/* <div style={{borderLeft: '6px solid green', height: '500px'}}></div> */}
+        {/* <div className="col-md-4 mt-3">
+          Our advanced AI analyzes your inputs and formulates a bespoke marketing strategy.
+        </div> */}
+        {/* <div style={{borderLeft: '6px solid green', height: '500px'}}></div> */}
+        {/* <div className="col-md-4 mt-3">
+          You receive a detailed strategy, ready to be implemented!
+        </div> */}
+      </div>
+    </div>
+    <div className={styles.textLeft}>
+      {/* <Link to="/survey" style={{
+        textDecoration: 'none'
+      }}>
+        <Button name={'Start Now'}/>
+      </Link> */}
       <br></br>
       <div style={{ marginTop: '50px'}}>
         <i style={{ fontSize: '12px' }}>
