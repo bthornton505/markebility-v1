@@ -1,9 +1,7 @@
 import * as React from "react"
 import { StaticImage } from "gatsby-plugin-image"
 
-const logo = require("../images/Markebility-logos_white.png")
-
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <header
     style={{
       margin: `0 auto`,
@@ -14,14 +12,22 @@ const Header = ({ siteTitle }) => (
       backgroundColor: `rgb(51, 135, 249)`
     }}
   >
-    <a href="https://markebility.com/" target="_blank" rel="noopener noreferrer"
-      style={{
-        fontSize: `var(--font-sm)`,
-        textDecoration: `none`,
-      }}
-    >
-      <StaticImage src="../images/Markebility-logos_transparent.png" alt="Markebility logo" height={100}/>
-    </a>
+    <div style={{
+      margin: '0 70px'
+    }}>
+      <a href="https://markebility.com/" target="_blank" rel="noopener noreferrer"
+        style={{
+          fontSize: `var(--font-sm)`,
+          textDecoration: `none`,
+        }}
+      >
+        <StaticImage 
+          src="../images/Markebility-logos_transparent.png" 
+          alt="Markebility logo" 
+          height={100}
+        />
+      </a>
+    </div>
   </header>
 )
 
