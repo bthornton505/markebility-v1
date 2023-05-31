@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
+import Button from "../components/button"
 import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
 
@@ -60,18 +61,6 @@ const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=de
 const IndexPage = () => (
   <Layout>
     <div className={styles.textLeft}>
-      <StaticImage
-        src="../images/example.png"
-        loading="eager"
-        width={64}
-        quality={95}
-        formats={["auto", "webp", "avif"]}
-        alt=""
-        style={{ marginBottom: `var(--space-3)` }}
-      />
-      <h1>
-        <b>Markebility</b>
-      </h1>
       <p className={styles.intro}>
         <h2>
           Your AI Digital Marketing Assistant
@@ -92,9 +81,11 @@ const IndexPage = () => (
       <h3>
         Try out our current experiment experience to see how our AI Marketing Assistant could help your business.
       </h3>
-      <button>
-        Get Started
-      </button>
+      <Link to="/survey" style={{
+        textDecoration: 'none'
+      }}>
+        <Button name={'Get Started'}/>
+      </Link>
     </div>
   </Layout>
 )
