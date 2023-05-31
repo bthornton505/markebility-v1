@@ -6,6 +6,7 @@ import * as styles from "../components/index.module.css"
 import Button from "../components/button"
 import Input from "../components/input"
 import Select from "../components/select"
+import { Link } from "gatsby"
 
 const SurveyPage = () => {
   const [index, setIndex] = useState(0);
@@ -93,7 +94,15 @@ const SurveyPage = () => {
             </div>
           }
           <div className={'col-3'}>
-            <Button name={'Next'} onClick={() => nextPage()}/>
+            {index >= 6 ?
+              <Link to="/recommendation" style={{
+                textDecoration: 'none'
+              }}>
+                <Button name={'Done'}/>
+              </Link>
+              :
+              <Button name={'Next'} onClick={() => nextPage()}/>
+            }
           </div>
         </div>
       </div>
