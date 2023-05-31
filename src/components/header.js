@@ -22,9 +22,10 @@ const Header = () => (
         }}
       >
         <StaticImage 
-          src="../images/Markebility-logos_transparent.png" 
+          src="../images/Markebility_logo_white_V2.png" 
           alt="Markebility logo" 
-          height={100}
+          height={55}
+          style={{ transition: 'none' }}
         />
       </a>
     </div>
