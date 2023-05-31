@@ -25,7 +25,8 @@ const Header = () => (
           src="../images/Markebility_logo_white_V2.png" 
           alt="Markebility logo" 
           height={55}
-          style={{ transition: 'none' }}
+          placeholder="blurred"
+          loading="eager"
         />
       </a>
     </div>
