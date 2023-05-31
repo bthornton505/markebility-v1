@@ -7,13 +7,18 @@
 
 import * as React from "react"
 import "./layout.css"
+import * as styles from "../components/index.module.css"
 
 const Select = (props) => {
   const { label, options, key } = props;
 
   return (
     <>
-      <label for={key}>{label}</label>
+      <label for={key}>
+        <h2 className={styles.intro} style={{display: 'flex', flexDirection: 'column'}}>
+          {label}
+        </h2>
+      </label>
       <select name={key} id={key} style={{
         outline: '0',
         borderWidth: '0 0 2px',

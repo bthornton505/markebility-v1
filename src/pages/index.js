@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/layout"
 import Button from "../components/button"
@@ -22,70 +21,49 @@ const links = [
   }
 ]
 
-const samplePageLinks = [
-  {
-    text: "Page 2",
-    url: "page-2",
-    badge: false,
-    description:
-      "A simple example of linking to another page within a Gatsby site",
-  },
-  { text: "TypeScript", url: "using-typescript" },
-  { text: "Server Side Rendering", url: "using-ssr" },
-  { text: "Deferred Static Generation", url: "using-dsg" },
-]
-
-const moreLinks = [
-  { text: "Join us on Discord", url: "https://gatsby.dev/discord" },
-  {
-    text: "Documentation",
-    url: "https://gatsbyjs.com/docs/",
-  },
-  {
-    text: "Starters",
-    url: "https://gatsbyjs.com/starters/",
-  },
-  {
-    text: "Showcase",
-    url: "https://gatsbyjs.com/showcase/",
-  },
-  {
-    text: "Contributing",
-    url: "https://www.gatsbyjs.com/contributing/",
-  },
-  { text: "Issues", url: "https://github.com/gatsbyjs/gatsby/issues" },
-]
-
-const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
-
 const IndexPage = () => (
   <Layout>
     <div className={styles.textLeft}>
       <p className={styles.intro}>
-        <h2>
-          Your AI Digital Marketing Assistant
-        </h2>
-        Unlock your small business's potential with Markebility -
-        the AI digital marketing assistant tailored for teams and individuals with little to no marketing experience.
+        <h3 style={{ marginBottom: '18px'}}>
+          Get Your Personalized Marketing Strategy in Minutes
+        </h3>
+        Welcome to Markebility - your early-access AI-powered marketing strategist. 
+        Simply answer a few quick questions about your business, and we'll provide you with a unique, 
+        actionable marketing strategy.
       </p>
+
+      <div className="row my-5">
+        <h5>
+          How it works:
+        </h5>
+        <div className="col-4">
+          Fill in our short questionnaire to give us insights about your business.
+        </div>
+        {/* <div style={{borderLeft: '6px solid green', height: '500px'}}></div> */}
+        <div className="col-4">
+          Our advanced AI analyzes your inputs and formulates a bespoke marketing strategy.
+        </div>
+        {/* <div style={{borderLeft: '6px solid green', height: '500px'}}></div> */}
+        <div className="col-4">
+          You receive a detailed strategy, ready to be implemented!
+        </div>
+      </div>
     </div>
-    <ul className={styles.list}>
-      {links.map(link => (
-        <li key={link.url} className={styles.listItem}>
-          {link.text}
-          <p className={styles.listItemDescription}>{link.description}</p>
-        </li>
-      ))}
-    </ul>
     <div className={styles.textLeft}>
-      <h3>
-        Try out our current experiment experience to see how our AI Marketing Assistant could help your business.
-      </h3>
       <Link to="/survey" style={{
         textDecoration: 'none'
       }}>
-        <Button name={'Get Started'}/>
+        <Button name={'Start Now'}/>
       </Link>
+      <br></br>
+      <div style={{ marginTop: '50px'}}>
+        <i style={{ fontSize: '12px' }}>
+          Please note: Markebility is in its early stages of development. 
+          While we aim to provide accurate and useful strategies, we can't guarantee results. 
+          The tool should be used as a guide rather than definitive advice. Errors may occur due to AI limitations.
+        </i>
+      </div>
     </div>
   </Layout>
 )
