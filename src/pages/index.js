@@ -37,15 +37,15 @@ const IndexPage = () => (
         <h5>
           How it works:
         </h5>
-        <div className="col-4">
+        <div className="col-md-4 mt-3">
           Fill in our short questionnaire to give us insights about your business.
         </div>
         {/* <div style={{borderLeft: '6px solid green', height: '500px'}}></div> */}
-        <div className="col-4">
+        <div className="col-md-4 mt-3">
           Our advanced AI analyzes your inputs and formulates a bespoke marketing strategy.
         </div>
         {/* <div style={{borderLeft: '6px solid green', height: '500px'}}></div> */}
-        <div className="col-4">
+        <div className="col-md-4 mt-3">
           You receive a detailed strategy, ready to be implemented!
         </div>
       </div>
