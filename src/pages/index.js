@@ -6,21 +6,6 @@ import Button from "../components/button"
 import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
 
-const links = [
-  {
-    text: "How it works",
-    url: "https://www.gatsbyjs.com/docs/tutorial",
-    description:
-      "Experience AI-driven marketing made easy with Markebility. Our platform simplifies digital marketing for small businesses, even with no prior experience.",
-  },
-  {
-    text: "Our Mission",
-    url: "https://github.com/gatsbyjs/gatsby/tree/master/examples",
-    description:
-      "Our mission is to make digital marketing accessible and effective for small business owners, regardless of their marketing expertise. With the power of AI, we're transforming the way businesses connect with their audience and achieve growth.",
-  }
-]
-
 const howItWorks = [
   'Fill in our short questionnaire to give us insights about your business.',
   'Our advanced AI analyzes your inputs and formulates a bespoke marketing strategy.',
@@ -39,12 +24,6 @@ const IndexPage = () => (
         actionable marketing strategy.
       </p>
 
-      <Link to="/survey" style={{
-        textDecoration: 'none'
-      }}>
-        <Button name={'Start Now'}/>
-      </Link>
-
       <div className="mt-5">
         <h5>
           How it works:
@@ -58,25 +37,14 @@ const IndexPage = () => (
             )
           })}
         </ol>
-        {/* <div className="col-md-4 mt-3">
-          Fill in our short questionnaire to give us insights about your business.
-        </div> */}
-        {/* <div style={{borderLeft: '6px solid green', height: '500px'}}></div> */}
-        {/* <div className="col-md-4 mt-3">
-          Our advanced AI analyzes your inputs and formulates a bespoke marketing strategy.
-        </div> */}
-        {/* <div style={{borderLeft: '6px solid green', height: '500px'}}></div> */}
-        {/* <div className="col-md-4 mt-3">
-          You receive a detailed strategy, ready to be implemented!
-        </div> */}
       </div>
     </div>
     <div className={styles.textLeft}>
-      {/* <Link to="/survey" style={{
+      <Link to="/survey" style={{
         textDecoration: 'none'
       }}>
         <Button name={'Start Now'}/>
-      </Link> */}
+      </Link>
       <br></br>
       <div style={{ marginTop: '50px'}}>
         <i style={{ fontSize: '12px' }}>

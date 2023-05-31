@@ -10,8 +10,7 @@ import "./layout.css"
 import * as styles from "../components/index.module.css"
 
 const Input = (props) => {
-  const { label, question, handleAnswers } = props;
-  console.log('question', question)
+  const { label, question, value, handleAnswers } = props;
 
   return (
     <>
@@ -21,6 +20,7 @@ const Input = (props) => {
         </h2>
       </label>
       <input type="text" id={question} name={question} 
+        value={value}
         onChange={(e) => handleAnswers({ [question]: e.target.value})}
         style={{
           outline: '0',

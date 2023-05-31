@@ -53,27 +53,25 @@ const SurveyPage = () => {
     if (index === 0) {
       return (
         <>
-          <Input label={'First Name'} question="firstName" handleAnswers={handleAnswers}/>
+          <Input label={'First Name'} value={recommendation['firstName']} question="firstName" handleAnswers={handleAnswers}/>
           <br></br>
-          <Input label={'Last Name'} question="lastName" handleAnswers={handleAnswers}/>
+          <Input label={'Last Name'} value={recommendation['lastName']} question="lastName" handleAnswers={handleAnswers}/>
           <br></br>
-          <Input label={'Email'} question="email" handleAnswers={handleAnswers}/>
+          <Input label={'Email'} value={recommendation['email']} question="email" handleAnswers={handleAnswers}/>
         </>
       )
     } else if (index == 1) {
-      return <Input label={questions['nameOfBusiness']} question="nameOfBusiness" handleAnswers={handleAnswers}/>
+      return <Input label={questions['nameOfBusiness']} value={recommendation['nameOfBusiness']} question="nameOfBusiness" handleAnswers={handleAnswers}/>
     } else if (index == 2) {
-      return <Input label={questions['businessOffering']} question="businessOffering" handleAnswers={handleAnswers}/>
+      return <Input label={questions['businessOffering']} value={recommendation['businessOffering']} question="businessOffering" handleAnswers={handleAnswers}/>
     } else if (index == 3) {
-      return <Select label={questions['marketingGoal']} options={goals} question="marketingGoal" handleAnswers={handleAnswers}/>
+      return <Select label={questions['marketingGoal']} options={goals} value={recommendation['marketingGoal']} question="marketingGoal" handleAnswers={handleAnswers}/>
     } else if (index == 4) {
-      return <Select label={questions['currentMarketingActivities']} options={activities} question="currentMarketingActivities" handleAnswers={handleAnswers}/>
+      return <Select label={questions['currentMarketingActivities']} options={activities} value={recommendation['currentMarketingActivities']} question="currentMarketingActivities" handleAnswers={handleAnswers}/>
     } else if (index == 5) {
-      return <Input label={questions['typicalCustomer']} question="typicalCustomer" handleAnswers={handleAnswers}/>
+      return <Input label={questions['typicalCustomer']} value={recommendation['typicalCustomer']} question="typicalCustomer" handleAnswers={handleAnswers}/>
     } else if (index == 6) {
-      return <Input label={questions['budgetTotal']} question="budgetTotal" handleAnswers={handleAnswers}/>
-    } else if (index == 7) {
-      return <Input label={questions['businessOffering']} question="businessOffering" handleAnswers={handleAnswers}/>
+      return <Input label={questions['budgetTotal']} value={recommendation['budgetTotal']} question="budgetTotal" handleAnswers={handleAnswers}/>
     }
   }
 
