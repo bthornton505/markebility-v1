@@ -22,7 +22,7 @@ const Select = (props) => {
       <select name={key} id={key} style={{
         outline: '0',
         borderWidth: '0 0 2px',
-        width: '350px',
+        width: '100%',
         fontSize: '20px'
       }}>
         {options.map((option) => {

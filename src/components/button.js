@@ -13,6 +13,7 @@ const Button = (props) => {
 
   return (
     <button onClick={() => onClick ? onClick() : null}
+      className="btn btn-block"
       style={{
         padding: '5px 25px',
         margin: '10px 0',

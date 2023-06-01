@@ -25,7 +25,7 @@ const Input = (props) => {
         style={{
           outline: '0',
           borderWidth: '0 0 2px',
-          width: '350px',
+          width: '100%',
           fontSize: '20px'
         }}
       />

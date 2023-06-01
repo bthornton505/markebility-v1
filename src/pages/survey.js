@@ -78,22 +78,24 @@ const SurveyPage = () => {
 
   return (
     <Layout>
-      <div className={styles.textLeft} style={{
+      <div className={`row ${styles.textLeft}`} style={{
         border: 'solid',
         borderWidth: '1px',
         padding: '30px',
-        borderRadius: '35px',
+        borderRadius: '25px',
         boxShadow: '10px 10px'
       }}>
-        <Question />
+        <div className="col-md-6">
+          <Question />
+        </div>
 
         <div className={`row ${styles.textLeft}`} style={{ marginTop: '20px' }}>
           {index > 0 &&
-            <div className={'col-2'}>
+            <div className={'col-md-3 col-sm-2'}>
               <Button name={'Back'} onClick={() => back()}/>
             </div>
           }
-          <div className={'col-3'}>
+          <div className={'col-md-3 col-sm-2'}>
             {index >= 6 ?
               <Link to="/recommendation" style={{
                 textDecoration: 'none'
