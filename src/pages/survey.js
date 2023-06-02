@@ -7,11 +7,13 @@ import Button from "../components/button"
 import Input from "../components/input"
 import Select from "../components/select"
 import { Link } from "gatsby"
+import { navigate } from "gatsby"
 import axios from 'axios';
 
 const SurveyPage = () => {
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState(0)
+  const [loading, setLoading] = useState(false)
   const [userId, setUserId] = useState(null)
   const [recommendationReqId, setRecommendationReqId] = useState(null)
   const [user, setUser] = useState({
@@ -28,6 +30,7 @@ const SurveyPage = () => {
   })
 
   const goals = [
+    'select one',
     'Increase brand awareness',
     'Drive website traffic and lead generation',
     'Boost sales and revenue',
@@ -35,6 +38,7 @@ const SurveyPage = () => {
   ]
 
   const activities = [
+    'select one',
     'Social media',
     'Search engine optimization',
     'Email marketing campaigns',
@@ -86,11 +90,14 @@ const SurveyPage = () => {
   }
 
   const submit = async () => {
+    setLoading(true)
     await updateRecommendation();
     await axios.post('http://localhost:3000/recommendations', recommendation)
     .then(function (response) {
       const data = response.data
       console.log('data', data)
+      setLoading(false)
+      navigate("/recommendation")
     })
     .catch(function (error) {
       console.log(error);
@@ -123,39 +130,47 @@ const SurveyPage = () => {
 
   return (
     <Layout>
-      <div className="progress mb-5" style={{ height: '3px'}}>
-        <div className="progress-bar" role="progressbar" style={{ width: `${progress}%`}} aria-valuenow={progress} aria-valuemin="0" aria-valuemax="6"></div>
-      </div>
-      <div className={`row ${styles.textLeft}`} style={{
-        border: 'solid',
-        borderWidth: '1px',
-        padding: '30px',
-        borderRadius: '25px',
-        boxShadow: '10px 10px'
-      }}>
-        <div className="col-md-6">
-          <Question />
+      {loading ? 
+        <div class="spinner-border" style={{width: '3rem', height: '3rem'}} role="status">
+          <span class="sr-only">Loading...</span>
         </div>
-
-        <div className={`row ${styles.textLeft}`} style={{ marginTop: '20px' }}>
-          {index > 0 &&
-            <div className={'col-md-3 col-sm-2'}>
-              <Button name={'Back'} onClick={() => back()}/>
-            </div>
-          }
-          <div className={'col-md-3 col-sm-2'}>
-            {index >= 6 ?
-              <Link to="/recommendation" style={{
-                textDecoration: 'none'
-              }}>
-                <Button name={'Done'} onClick={() => submit()}/>
-              </Link>
-              :
-              <Button name={'Next'} onClick={() => nextPage()}/>
-            }
+        :
+        <>
+          <div className="progress mb-5" style={{ height: '3px'}}>
+            <div className="progress-bar" role="progressbar" style={{ width: `${progress}%`}} aria-valuenow={progress} aria-valuemin="0" aria-valuemax="6"></div>
           </div>
-        </div>
-      </div>
+          <div className={`row ${styles.textLeft}`} style={{
+            border: 'solid',
+            borderWidth: '1px',
+            padding: '30px',
+            borderRadius: '25px',
+            boxShadow: '10px 10px'
+          }}>
+            <div className="col-md-6">
+              <Question />
+            </div>
+
+            <div className={`row ${styles.textLeft}`} style={{ marginTop: '20px' }}>
+              {index > 0 &&
+                <div className={'col-md-3 col-sm-2'}>
+                  <Button name={'Back'} onClick={() => back()}/>
+                </div>
+              }
+              <div className={'col-md-3 col-sm-2'}>
+                {index >= 6 ?
+                  // <Link to="/recommendation" style={{
+                  //   textDecoration: 'none'
+                  // }}>
+                    <Button name={'Done'} onClick={() => submit()}/>
+                  
+                  :
+                  <Button name={'Next'} onClick={() => nextPage()}/>
+                }
+              </div>
+            </div>
+          </div>
+        </>
+      }
     </Layout>
   )
 }
