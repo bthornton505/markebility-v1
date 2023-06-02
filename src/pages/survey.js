@@ -7,13 +7,18 @@ import Button from "../components/button"
 import Input from "../components/input"
 import Select from "../components/select"
 import { Link } from "gatsby"
+import axios from 'axios';
 
 const SurveyPage = () => {
   const [index, setIndex] = useState(0);
+  const [progress, setProgress] = useState(0)
+  const [userId, setUserId] = useState(null)
+  const [recommendationReqId, setRecommendationReqId] = useState(null)
+  const [user, setUser] = useState({
+    name: '',
+    email: ''
+  })
   const [recommendation, setRecommendation] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
     nameOfBusiness: '',
     businessOffering: '',
     marketingGoal: '',
@@ -21,19 +26,6 @@ const SurveyPage = () => {
     typicalCustomer: '',
     budgetTotal: ''
   })
-
-  const back = () => {
-    setIndex(index - 1)
-  }
-
-  const nextPage = () => {
-    setIndex(index + 1)
-  }
-
-  const handleAnswers = (answer) => {
-    console.log('this is working', answer)
-    setRecommendation({ ...recommendation, answer })
-  }
 
   const goals = [
     'Increase brand awareness',
@@ -50,34 +42,90 @@ const SurveyPage = () => {
     'Traditional media (newspapers, magazines, radio, TV)'
   ]
 
+  const updateUser = (field, value) => {
+    setUser({ ...user, [field]: value });
+  }
+
+  const handleAnswers = (field, value) => {
+    setRecommendation({ ...recommendation, [field]: value });
+  }
+
+  const back = () => {
+    setIndex(index - 1)
+    setProgress(progress - 10)
+  }
+
+  const nextPage = async () => {
+    if (index === 0){
+      await axios.post('http://localhost:3000/users', user)
+      .then(function (response) {
+        const data = response.data
+        setUserId(data.userId)
+        setRecommendationReqId(data.newRecommendationRequestId)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    } else {
+      await updateRecommendation();
+    }
+
+    setIndex(index + 1)
+    setProgress((index + 1) * 10)
+  }
+
+  const updateRecommendation = async () => {
+    await axios.put('http://localhost:3000/recommendations', { recommendationReqId, recommendationData: recommendation })
+    .then(function (response) {
+      const data = response.data
+      console.log('data', data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  const submit = async () => {
+    await updateRecommendation();
+    await axios.post('http://localhost:3000/recommendations', recommendation)
+    .then(function (response) {
+      const data = response.data
+      console.log('data', data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   const Question = () => {
     if (index === 0) {
       return (
         <>
-          <Input label={'First Name'} value={recommendation['firstName']} question="firstName" handleAnswers={handleAnswers}/>
+          <Input label={'Name'} value={user.name} question="name" handleUpdate={updateUser}/>
           <br></br>
-          <Input label={'Last Name'} value={recommendation['lastName']} question="lastName" handleAnswers={handleAnswers}/>
-          <br></br>
-          <Input label={'Email'} value={recommendation['email']} question="email" handleAnswers={handleAnswers}/>
+          <Input label={'Email'} value={user.email} question="email" handleUpdate={updateUser}/>
         </>
       )
-    } else if (index == 1) {
-      return <Input label={questions['nameOfBusiness']} value={recommendation['nameOfBusiness']} question="nameOfBusiness" handleAnswers={handleAnswers}/>
-    } else if (index == 2) {
-      return <Input label={questions['businessOffering']} value={recommendation['businessOffering']} question="businessOffering" handleAnswers={handleAnswers}/>
-    } else if (index == 3) {
-      return <Select label={questions['marketingGoal']} options={goals} value={recommendation['marketingGoal']} question="marketingGoal" handleAnswers={handleAnswers}/>
-    } else if (index == 4) {
-      return <Select label={questions['currentMarketingActivities']} options={activities} value={recommendation['currentMarketingActivities']} question="currentMarketingActivities" handleAnswers={handleAnswers}/>
-    } else if (index == 5) {
-      return <Input label={questions['typicalCustomer']} value={recommendation['typicalCustomer']} question="typicalCustomer" handleAnswers={handleAnswers}/>
-    } else if (index == 6) {
-      return <Input label={questions['budgetTotal']} value={recommendation['budgetTotal']} question="budgetTotal" handleAnswers={handleAnswers}/>
+    } else if (index === 1) {
+      return <Input label={questions['nameOfBusiness']} value={recommendation['nameOfBusiness']} question="nameOfBusiness" handleUpdate={handleAnswers}/>
+    } else if (index === 2) {
+      return <Input label={questions['businessOffering']} value={recommendation['businessOffering']} question="businessOffering" handleUpdate={handleAnswers}/>
+    } else if (index === 3) {
+      return <Select label={questions['marketingGoal']} options={goals} value={recommendation['marketingGoal']} question="marketingGoal" handleUpdate={handleAnswers}/>
+    } else if (index === 4) {
+      return <Select label={questions['currentMarketingActivities']} options={activities} value={recommendation['currentMarketingActivities']} question="currentMarketingActivities" handleUpdate={handleAnswers}/>
+    } else if (index === 5) {
+      return <Input label={questions['typicalCustomer']} value={recommendation['typicalCustomer']} question="typicalCustomer" handleUpdate={handleAnswers}/>
+    } else if (index === 6) {
+      return <Input label={questions['budgetTotal']} value={recommendation['budgetTotal']} question="budgetTotal" handleUpdate={handleAnswers}/>
     }
   }
 
   return (
     <Layout>
+      <div className="progress mb-5" style={{ height: '3px'}}>
+        <div className="progress-bar" role="progressbar" style={{ width: `${progress}%`}} aria-valuenow={progress} aria-valuemin="0" aria-valuemax="6"></div>
+      </div>
       <div className={`row ${styles.textLeft}`} style={{
         border: 'solid',
         borderWidth: '1px',
@@ -100,7 +148,7 @@ const SurveyPage = () => {
               <Link to="/recommendation" style={{
                 textDecoration: 'none'
               }}>
-                <Button name={'Done'}/>
+                <Button name={'Done'} onClick={() => submit()}/>
               </Link>
               :
               <Button name={'Next'} onClick={() => nextPage()}/>
