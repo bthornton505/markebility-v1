@@ -10,17 +10,17 @@ import "./layout.css"
 import * as styles from "../components/index.module.css"
 
 const Select = (props) => {
-  const { label, question, options, value, handleUpdate } = props;
+  const { label, question, options, target, handleUpdate } = props;
 
   return (
     <>
-      <label for={question}>
+      <label for={label}>
         <h2 className={styles.intro} style={{display: 'flex', flexDirection: 'column'}}>
           {label}
         </h2>
       </label>
-      <select name={question} id={question} 
-        value={value}
+      <select name={label} id={label} 
+        value={target[question]}
         onChange={(e) => handleUpdate(question, e.target.value)}
         style={{
           outline: '0',

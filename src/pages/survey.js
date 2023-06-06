@@ -95,9 +95,8 @@ const SurveyPage = () => {
     await axios.post('http://localhost:3000/recommendations', recommendation)
     .then(function (response) {
       const data = response.data
-      console.log('data', data)
-      setLoading(false)
       navigate("/recommendation")
+      setLoading(false)
     })
     .catch(function (error) {
       console.log(error);
@@ -108,32 +107,35 @@ const SurveyPage = () => {
     if (index === 0) {
       return (
         <>
-          <Input label={'Name'} value={user.name} question="name" handleUpdate={updateUser}/>
+          <Input label={'Name'} target={user} question="name" handleUpdate={updateUser}/>
           <br></br>
-          <Input label={'Email'} value={user.email} question="email" handleUpdate={updateUser}/>
+          <Input label={'Email'} target={user} question="email" handleUpdate={updateUser}/>
         </>
       )
     } else if (index === 1) {
-      return <Input label={questions['nameOfBusiness']} value={recommendation['nameOfBusiness']} question="nameOfBusiness" handleUpdate={handleAnswers}/>
+      return <Input label={questions['nameOfBusiness']} target={recommendation} question="nameOfBusiness" handleUpdate={handleAnswers}/>
     } else if (index === 2) {
-      return <Input label={questions['businessOffering']} value={recommendation['businessOffering']} question="businessOffering" handleUpdate={handleAnswers}/>
+      return <Input label={questions['businessOffering']} target={recommendation} question="businessOffering" handleUpdate={handleAnswers}/>
     } else if (index === 3) {
-      return <Select label={questions['marketingGoal']} options={goals} value={recommendation['marketingGoal']} question="marketingGoal" handleUpdate={handleAnswers}/>
+      return <Select label={questions['marketingGoal']} options={goals} target={recommendation} question="marketingGoal" handleUpdate={handleAnswers}/>
     } else if (index === 4) {
-      return <Select label={questions['currentMarketingActivities']} options={activities} value={recommendation['currentMarketingActivities']} question="currentMarketingActivities" handleUpdate={handleAnswers}/>
+      return <Select label={questions['currentMarketingActivities']} options={activities} target={recommendation} question="currentMarketingActivities" handleUpdate={handleAnswers}/>
     } else if (index === 5) {
-      return <Input label={questions['typicalCustomer']} value={recommendation['typicalCustomer']} question="typicalCustomer" handleUpdate={handleAnswers}/>
+      return <Input label={questions['typicalCustomer']} target={recommendation} question="typicalCustomer" handleUpdate={handleAnswers}/>
     } else if (index === 6) {
-      return <Input label={questions['budgetTotal']} value={recommendation['budgetTotal']} question="budgetTotal" handleUpdate={handleAnswers}/>
+      return <Input label={questions['budgetTotal']} target={recommendation} question="budgetTotal" handleUpdate={handleAnswers}/>
     }
   }
 
   return (
     <Layout>
       {loading ? 
-        <div class="spinner-border" style={{width: '3rem', height: '3rem'}} role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
+        <>
+          <div class="spinner-border" style={{width: '3rem', height: '3rem'}} role="status"></div>
+          <div>
+            <h2>Loading results from our AI</h2>
+          </div>
+        </>
         :
         <>
           <div className="progress mb-5" style={{ height: '3px'}}>
