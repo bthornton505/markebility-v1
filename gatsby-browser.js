@@ -8,3 +8,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "@popperjs/core/dist/umd/popper.min.js";
+
+import React from 'react';
+import RootElement from './src/components/rootElement';
+
+export const wrapRootElement = ({ element }) => {
+  return <RootElement>{element}</RootElement>;
+};
