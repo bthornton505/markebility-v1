@@ -9,22 +9,32 @@ export const AppProvider = ({ children }) => {
       {
         userId: null,
         userEmail: '',
-        recommendationReqId: null
+        recommendationReqId: null,
+        recommendationReq: {
+          nameOfBusiness: '',
+          businessOffering: '',
+          marketingGoal: '',
+          currentMarketingActivities: '',
+          typicalCustomer: '',
+          budgetTotal: ''
+        },
+        recommendation: ''
       }
     );
+
+    const updateRecommendationState = (payload) => {
+      dispatch({
+        type: 'update_recommendation',
+        payload
+      });
+    }
   
     const handleNav = () => {
       console.log('hello from provider')
     };
   
     return (
-      <AppContext.Provider
-        value={{
-          state,
-          dispatch,
-          handleNav
-        }}
-      >
+      <AppContext.Provider value={{ state, dispatch, handleNav, updateRecommendationState}}>
         {children}
       </AppContext.Provider>
     );

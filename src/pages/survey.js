@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import questions from "../constants/questions"
@@ -9,8 +9,10 @@ import Select from "../components/select"
 import { Link } from "gatsby"
 import { navigate } from "gatsby"
 import axios from 'axios';
+import { AppContext } from '../context/appContext';
 
 const SurveyPage = () => {
+  const { state, dispatch } = useContext(AppContext)
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState(0)
   const [loading, setLoading] = useState(false)
@@ -20,14 +22,7 @@ const SurveyPage = () => {
     name: '',
     email: ''
   })
-  const [recommendation, setRecommendation] = useState({
-    nameOfBusiness: '',
-    businessOffering: '',
-    marketingGoal: '',
-    currentMarketingActivities: '',
-    typicalCustomer: '',
-    budgetTotal: ''
-  })
+  const [recommendation, setRecommendation] = useState(state.recommendationReq)
 
   const goals = [
     'select one',
@@ -95,6 +90,10 @@ const SurveyPage = () => {
     await axios.post('http://localhost:3000/recommendations', recommendation)
     .then(function (response) {
       const data = response.data
+      dispatch({
+        type: 'update_recommendation',
+        payload: data
+      })
       navigate("/recommendation")
       setLoading(false)
     })

@@ -1,23 +1,17 @@
-export default function appReducer(tasks, action) {
+export default function appReducer(state, action) {
     switch (action.type) {
         case 'added': {
-        return [...tasks, {
+        return [...state, {
             id: action.id,
             text: action.text,
             done: false
         }];
         }
-        case 'changed': {
-        return tasks.map(t => {
-            if (t.id === action.task.id) {
-            return action.task;
-            } else {
-            return t;
-            }
-        });
+        case 'update_recommendation_request': {
+            return { ...state, recommendationReq: action.payload }
         }
-        case 'deleted': {
-        return tasks.filter(t => t.id !== action.id);
+        case 'update_recommendation': {
+            return { ...state, recommendation: action.payload }
         }
         default: {
         throw Error('Unknown action: ' + action.type);
