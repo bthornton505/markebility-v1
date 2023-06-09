@@ -1,4 +1,5 @@
 export default function appReducer(state, action) {
+    const { payload } = action;
     switch (action.type) {
         case 'added': {
         return [...state, {
@@ -7,11 +8,14 @@ export default function appReducer(state, action) {
             done: false
         }];
         }
+        case 'update_user': {
+            return { ...state, name: payload.name, email: payload.email }
+        }
         case 'update_recommendation_request': {
-            return { ...state, recommendationReq: action.payload }
+            return { ...state, recommendationReq: payload }
         }
         case 'update_recommendation': {
-            return { ...state, recommendation: action.payload }
+            return { ...state, recommendation: payload }
         }
         default: {
         throw Error('Unknown action: ' + action.type);

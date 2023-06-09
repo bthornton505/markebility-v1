@@ -12,15 +12,15 @@ import axios from 'axios';
 import { AppContext } from '../context/appContext';
 
 const SurveyPage = () => {
-  const { state, dispatch } = useContext(AppContext)
+  const { state, dispatch, updateUserState } = useContext(AppContext)
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState(0)
   const [loading, setLoading] = useState(false)
   const [userId, setUserId] = useState(null)
   const [recommendationReqId, setRecommendationReqId] = useState(null)
   const [user, setUser] = useState({
-    name: '',
-    email: ''
+    name: state.name,
+    email: state.email
   })
   const [recommendation, setRecommendation] = useState(state.recommendationReq)
 
@@ -42,6 +42,7 @@ const SurveyPage = () => {
   ]
 
   const updateUser = (field, value) => {
+    updateUserState({ ...user, [field]: value })
     setUser({ ...user, [field]: value });
   }
 
@@ -106,23 +107,23 @@ const SurveyPage = () => {
     if (index === 0) {
       return (
         <>
-          <Input label={'Name'} target={user} question="name" handleUpdate={updateUser}/>
+          <Input label={'Name'} target={user['name']} question="name" handleUpdate={updateUser}/>
           <br></br>
-          <Input label={'Email'} target={user} question="email" handleUpdate={updateUser}/>
+          <Input label={'Email'} target={user['email']} question="email" handleUpdate={updateUser}/>
         </>
       )
     } else if (index === 1) {
-      return <Input label={questions['nameOfBusiness']} target={recommendation} question="nameOfBusiness" handleUpdate={handleAnswers}/>
+      return <Input label={questions['nameOfBusiness']} target={recommendation['nameOfBusiness']} question="nameOfBusiness" handleUpdate={handleAnswers}/>
     } else if (index === 2) {
-      return <Input label={questions['businessOffering']} target={recommendation} question="businessOffering" handleUpdate={handleAnswers}/>
+      return <Input label={questions['businessOffering']} target={recommendation['businessOffering']} question="businessOffering" handleUpdate={handleAnswers}/>
     } else if (index === 3) {
-      return <Select label={questions['marketingGoal']} options={goals} target={recommendation} question="marketingGoal" handleUpdate={handleAnswers}/>
+      return <Select label={questions['marketingGoal']} options={goals} target={recommendation['marketingGoal']} question="marketingGoal" handleUpdate={handleAnswers}/>
     } else if (index === 4) {
-      return <Select label={questions['currentMarketingActivities']} options={activities} target={recommendation} question="currentMarketingActivities" handleUpdate={handleAnswers}/>
+      return <Select label={questions['currentMarketingActivities']} options={activities} target={recommendation['currentMarketingActivities']} question="currentMarketingActivities" handleUpdate={handleAnswers}/>
     } else if (index === 5) {
-      return <Input label={questions['typicalCustomer']} target={recommendation} question="typicalCustomer" handleUpdate={handleAnswers}/>
+      return <Input label={questions['typicalCustomer']} target={recommendation['typicalCustomer']} question="typicalCustomer" handleUpdate={handleAnswers}/>
     } else if (index === 6) {
-      return <Input label={questions['budgetTotal']} target={recommendation} question="budgetTotal" handleUpdate={handleAnswers}/>
+      return <Input label={questions['budgetTotal']} target={recommendation['budgetTotal']} question="budgetTotal" handleUpdate={handleAnswers}/>
     }
   }
 
@@ -148,7 +149,7 @@ const SurveyPage = () => {
             boxShadow: '10px 10px'
           }}>
             <div className="col-md-6">
-              <Question />
+              {Question()}
             </div>
 
             <div className={`row ${styles.textLeft}`} style={{ marginTop: '20px' }}>

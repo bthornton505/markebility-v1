@@ -22,7 +22,7 @@ const Input = (props) => {
         </h2>
       </label>
       <input type="text" id={label} name={label} 
-        value={target[question]}
+        value={target}
         onChange={(e) => handleUpdate(question, e.target.value)}
         style={{
           outline: '0',

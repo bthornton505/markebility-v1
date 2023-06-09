@@ -8,7 +8,8 @@ export const AppProvider = ({ children }) => {
       appReducer,
       {
         userId: null,
-        userEmail: '',
+        email: '',
+        name: '',
         recommendationReqId: null,
         recommendationReq: {
           nameOfBusiness: '',
@@ -22,6 +23,13 @@ export const AppProvider = ({ children }) => {
       }
     );
 
+    const updateUserState = (payload) => {
+      dispatch({
+        type: 'update_user',
+        payload
+      });
+    }
+
     const updateRecommendationState = (payload) => {
       dispatch({
         type: 'update_recommendation',
@@ -34,7 +42,7 @@ export const AppProvider = ({ children }) => {
     };
   
     return (
-      <AppContext.Provider value={{ state, dispatch, handleNav, updateRecommendationState}}>
+      <AppContext.Provider value={{ state, dispatch, handleNav, updateRecommendationState, updateUserState}}>
         {children}
       </AppContext.Provider>
     );
