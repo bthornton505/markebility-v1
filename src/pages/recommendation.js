@@ -12,21 +12,35 @@ const RecommendationPage = () => {
   const [showModal, setShowModal] = useState(false)
   const [feedback, setFeedback] = useState('')
   const { state, dispatch } = useContext(AppContext)
+  const [alert, setAlert] = useState(null)
+  const [error, setError] = useState(null)
+
+  const alertClass = () => {
+    return alert ? 'alert-success' : 'alert-danger'
+  }
 
   const submitFeedback = async () => {
     await axios.post('http://localhost:3000/recommendations/feedback', { userId: '123456', email: 'bthornton@gmail.com', feedback })
     .then(function (response) {
       const data = response.data
       setShowModal(false)
+      setAlert(data)
     })
     .catch(function (error) {
       console.log(error);
+      setError(error)
     });
   }
 
   return (
     <Layout>
       <>
+        {alert &&
+          <div className={`alert ${alertClass()} alert-dismissible mb-4`} role="alert">
+            A simple primary alert—check it out!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        }
         <div className={styles.textLeft}>
           <p className={styles.intro}>
             <h3 style={{ marginBottom: '18px'}}>
@@ -35,13 +49,13 @@ const RecommendationPage = () => {
             {state.recommendation.chatGptResponse}
           </p>
         </div>
-        <div className={styles.textLeft}>
+        {/* <div className={styles.textLeft}>
           <Link to="/" style={{
             textDecoration: 'none'
           }}>
             <Button name={'Home'}/>
           </Link>
-        </div>
+        </div> */}
         <div className={styles.textLeft}>
           <Button name={'Feedback'} onClick={() => setShowModal(true)}/>
         </div>

@@ -16,6 +16,8 @@ const SurveyPage = () => {
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState(0)
   const [loading, setLoading] = useState(false)
+  const [alert, setAlert] = useState(null)
+  const [error, setError] = useState(null)
   const [userId, setUserId] = useState(null)
   const [recommendationReqId, setRecommendationReqId] = useState(null)
   const [user, setUser] = useState({
@@ -55,6 +57,10 @@ const SurveyPage = () => {
     setProgress(progress - 10)
   }
 
+  const alertClass = () => {
+    return alert ? 'alert-success' : 'alert-danger'
+  }
+
   const nextPage = async () => {
     if (index === 0){
       await axios.post('http://localhost:3000/users', user)
@@ -65,6 +71,7 @@ const SurveyPage = () => {
       })
       .catch(function (error) {
         console.log(error);
+        setError(error)
       });
     } else {
       await updateRecommendation();
@@ -82,6 +89,7 @@ const SurveyPage = () => {
     })
     .catch(function (error) {
       console.log(error);
+      setError(error)
     });
   }
 
@@ -100,6 +108,7 @@ const SurveyPage = () => {
     })
     .catch(function (error) {
       console.log(error);
+      setError(error)
     });
   }
 
@@ -138,10 +147,15 @@ const SurveyPage = () => {
         </>
         :
         <>
-          <div className="progress mb-5" style={{ height: '3px'}}>
+          <div className="progress mb-3" style={{ height: '3px'}}>
             <div className="progress-bar" role="progressbar" style={{ width: `${progress}%`}} aria-valuenow={progress} aria-valuemin="0" aria-valuemax="6"></div>
           </div>
-          <div className={`row ${styles.textLeft}`} style={{
+          {alert &&
+            <div className={`alert ${alertClass()} mb-4`} role="alert">
+              A simple primary alert—check it out!
+            </div>
+          }
+          <div className={`row mt-4 ${styles.textLeft}`} style={{
             border: 'solid',
             borderWidth: '1px',
             padding: '30px',
