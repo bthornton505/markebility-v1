@@ -4,6 +4,10 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
@@ -26,7 +30,7 @@ module.exports = {
     },
     `bootstrap`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    `gatsby-plugin-sharp`, 
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -41,9 +45,5 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-  ]
+  ],
 }
-
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
