@@ -20,7 +20,7 @@ const RecommendationPage = () => {
   }
 
   const submitFeedback = async () => {
-    await axios.post('http://localhost:3000/recommendations/feedback', { userId: '123456', email: 'bthornton@gmail.com', feedback })
+    await axios.post(`${process.env.GATSBY_API_URI}/recommendations/feedback`, { userId: '123456', email: 'bthornton@gmail.com', feedback })
     .then(function (response) {
       const data = response.data
       setShowModal(false)

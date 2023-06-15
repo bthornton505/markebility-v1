@@ -63,7 +63,7 @@ const SurveyPage = () => {
 
   const nextPage = async () => {
     if (index === 0){
-      await axios.post('http://localhost:3000/users', user)
+      await axios.post(`${process.env.GATSBY_API_URI}/users`, user)
       .then(function (response) {
         const data = response.data
         setUserId(data.userId)
@@ -82,7 +82,7 @@ const SurveyPage = () => {
   }
 
   const updateRecommendation = async () => {
-    await axios.put('http://localhost:3000/recommendations', { recommendationReqId, recommendationData: recommendation })
+    await axios.put(`${process.env.GATSBY_API_URI}/recommendations`, { recommendationReqId, recommendationData: recommendation })
     .then(function (response) {
       const data = response.data
       console.log('data', data)
@@ -96,7 +96,7 @@ const SurveyPage = () => {
   const submit = async () => {
     setLoading(true)
     await updateRecommendation();
-    await axios.post('http://localhost:3000/recommendations', recommendation)
+    await axios.post(`${process.env.GATSBY_API_URI}/recommendations`, recommendation)
     .then(function (response) {
       const data = response.data
       dispatch({
