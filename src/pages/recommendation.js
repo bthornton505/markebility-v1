@@ -1,6 +1,4 @@
 import React, { useContext, useState } from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
 import Button from "../components/button"
 import Seo from "../components/seo"
@@ -49,13 +47,6 @@ const RecommendationPage = () => {
             {state.recommendation.chatGptResponse}
           </p>
         </div>
-        {/* <div className={styles.textLeft}>
-          <Link to="/" style={{
-            textDecoration: 'none'
-          }}>
-            <Button name={'Home'}/>
-          </Link>
-        </div> */}
         <div className={styles.textLeft}>
           <Button name={'Feedback'} onClick={() => setShowModal(true)}/>
         </div>

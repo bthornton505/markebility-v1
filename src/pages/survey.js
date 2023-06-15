@@ -6,7 +6,6 @@ import * as styles from "../components/index.module.css"
 import Button from "../components/button"
 import Input from "../components/input"
 import Select from "../components/select"
-import { Link } from "gatsby"
 import { navigate } from "gatsby"
 import axios from 'axios';
 import { AppContext } from '../context/appContext';
@@ -174,11 +173,7 @@ const SurveyPage = () => {
               }
               <div className={'col-md-3 col-sm-2'}>
                 {index >= 6 ?
-                  // <Link to="/recommendation" style={{
-                  //   textDecoration: 'none'
-                  // }}>
-                    <Button name={'Done'} onClick={() => submit()}/>
-                  
+                  <Button name={'Done'} onClick={() => submit()}/>
                   :
                   <Button name={'Next'} onClick={() => nextPage()}/>
                 }
