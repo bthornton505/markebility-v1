@@ -1,7 +1,7 @@
 import React, { createContext, useState, useReducer } from 'react';
 import appReducer from '../reducers/appReducer';
 
-const AppContext = createContext();
+export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(
@@ -48,4 +48,3 @@ export const AppProvider = ({ children }) => {
   );
 };
 
-export default AppContext
