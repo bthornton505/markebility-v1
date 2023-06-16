@@ -9,7 +9,7 @@ import { AppContext } from '../context/appContext';
 const RecommendationPage = () => {
   const [showModal, setShowModal] = useState(false)
   const [feedback, setFeedback] = useState('')
-  const { state, dispatch } = useContext(AppContext)
+  const { state, dispatch } = AppContext()
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
 

@@ -11,7 +11,7 @@ import axios from 'axios';
 import { AppContext } from '../context/appContext';
 
 const SurveyPage = () => {
-  const { state, dispatch, updateUserState } = useContext(AppContext)
+  const { state, dispatch, updateUserState } = AppContext()
   const [index, setIndex] = useState(0);
   const [progress, setProgress] = useState(0)
   const [loading, setLoading] = useState(false)
