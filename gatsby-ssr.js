@@ -7,9 +7,6 @@
 /**
  * @type {import('gatsby').GatsbySSR['onRenderBody']}
  */
-exports.onRenderBody = ({ setHtmlAttributes }) => {
-  setHtmlAttributes({ lang: `en` })
-}
 
 import React from 'react';
 import RootElement from './src/components/rootElement';
