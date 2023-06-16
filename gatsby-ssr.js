@@ -4,8 +4,16 @@
  * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/
  */
 
+/**
+ * @type {import('gatsby').GatsbySSR['onRenderBody']}
+ */
+exports.onRenderBody = ({ setHtmlAttributes }) => {
+  setHtmlAttributes({ lang: `en` })
+}
+
 import React from 'react';
-import RootElement from './src/components/root-element';
+import RootElement from './src/components/rootElement';
+// import RootElement from './src/components/root-element';
 
 export const wrapRootElement = ({ element }) => {
   return <RootElement>{element}</RootElement>;
