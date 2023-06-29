@@ -46,7 +46,7 @@ const RecommendationPage = () => {
           <p className={styles.intro}>
             {state.recommendation.intro}
             <div className="my-4">
-            { state.recommendation.steps.map((step) => {
+              {state.recommendation && state.recommendation.steps.map((step) => {
                 return <p>{step}</p>
               })}
             </div>
