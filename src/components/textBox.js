@@ -5,12 +5,12 @@
  * See: https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
  */
 
-import * as React from "react"
+import React from "react"
 import "./layout.css"
 import * as styles from "../components/index.module.css"
 
-const Select = (props) => {
-  const { label, question, options, target, handleUpdate } = props;
+const TextBox = (props) => {
+  const { label, question, target, handleUpdate } = props;
 
   return (
     <>
@@ -19,22 +19,18 @@ const Select = (props) => {
           {label}
         </h2>
       </label>
-      <select name={label} id={label} 
-        value={target[question]}
+      <textarea type="text" id={label} name={label}
+        rows="4" cols="50"
+        value={target}
         onChange={(e) => handleUpdate(question, e.target.value)}
         style={{
-          outline: '0',
           borderWidth: '0 0 2px',
           width: '100%',
           fontSize: '20px'
         }}
-      >
-        {options.map((option) => {
-            return <option value={option}>{option}</option>
-        })}
-      </select>
+      />
     </>
   )
 }
 
-export default Select
+export default TextBox

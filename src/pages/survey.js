@@ -9,6 +9,8 @@ import Select from "../components/select"
 import { navigate } from "gatsby"
 import axios from 'axios';
 import { AppContext } from '../context/appContext';
+import TextBox from '../components/textBox';
+import MultiSelect from '../components/multiselect';
 
 const SurveyPage = () => {
   const { state, dispatch, updateUserState } = useContext(AppContext)
@@ -18,6 +20,7 @@ const SurveyPage = () => {
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
   const [userId, setUserId] = useState(null)
+  const [selectedOptions, setSelectedOptions] = useState([])
   const [recommendationReqId, setRecommendationReqId] = useState(null)
   const [user, setUser] = useState({
     name: state.name,
@@ -33,15 +36,6 @@ const SurveyPage = () => {
     'Enhance customer loyalty and retention'
   ]
 
-  const activities = [
-    'select one',
-    'Social media',
-    'Search engine optimization',
-    'Email marketing campaigns',
-    'Digital ads (paid search, display ads, etc.)',
-    'Traditional media (newspapers, magazines, radio, TV)'
-  ]
-
   const updateUser = (field, value) => {
     updateUserState({ ...user, [field]: value })
     setUser({ ...user, [field]: value });
@@ -49,6 +43,19 @@ const SurveyPage = () => {
 
   const handleAnswers = (field, value) => {
     setRecommendation({ ...recommendation, [field]: value });
+  }
+
+  const handleMultiSelect = (field, value, checked) => {
+    let selected = selectedOptions
+
+    if (!checked) {
+      selected = selectedOptions.filter(item => item != value)
+    } else {
+      selected.push(value)
+    }
+
+    setSelectedOptions(selected)
+    setRecommendation({ ...recommendation, [field]: selected });
   }
 
   const back = () => {
@@ -100,7 +107,7 @@ const SurveyPage = () => {
       const data = response.data
       dispatch({
         type: 'update_recommendation',
-        payload: data
+        payload: data.chatGptResponse
       })
       navigate("/recommendation")
       setLoading(false)
@@ -123,13 +130,13 @@ const SurveyPage = () => {
     } else if (index === 1) {
       return <Input label={questions['nameOfBusiness']} target={recommendation['nameOfBusiness']} question="nameOfBusiness" handleUpdate={handleAnswers}/>
     } else if (index === 2) {
-      return <Input label={questions['businessOffering']} target={recommendation['businessOffering']} question="businessOffering" handleUpdate={handleAnswers}/>
+      return <TextBox label={questions['businessOffering']} target={recommendation['businessOffering']} question="businessOffering" handleUpdate={handleAnswers}/>
     } else if (index === 3) {
       return <Select label={questions['marketingGoal']} options={goals} target={recommendation['marketingGoal']} question="marketingGoal" handleUpdate={handleAnswers}/>
     } else if (index === 4) {
-      return <Select label={questions['currentMarketingActivities']} options={activities} target={recommendation['currentMarketingActivities']} question="currentMarketingActivities" handleUpdate={handleAnswers}/>
+      return <MultiSelect label={questions['currentMarketingActivities']} question="currentMarketingActivities" handleUpdate={handleMultiSelect}/>
     } else if (index === 5) {
-      return <Input label={questions['typicalCustomer']} target={recommendation['typicalCustomer']} question="typicalCustomer" handleUpdate={handleAnswers}/>
+      return <TextBox label={questions['typicalCustomer']} target={recommendation['typicalCustomer']} question="typicalCustomer" handleUpdate={handleAnswers}/>
     } else if (index === 6) {
       return <Input label={questions['budgetTotal']} target={recommendation['budgetTotal']} question="budgetTotal" handleUpdate={handleAnswers}/>
     }
@@ -137,11 +144,17 @@ const SurveyPage = () => {
 
   return (
     <Layout>
+      {error &&
+        <div className={`alert ${alertClass()} alert-dismissible mb-4`} role="alert">
+          {error}
+          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      }
       {loading ? 
         <>
-          <div class="spinner-border" style={{width: '3rem', height: '3rem'}} role="status"></div>
+          <div className="spinner-border" style={{width: '3rem', height: '3rem'}} role="status"></div>
           <div>
-            <h2>Loading results from our AI</h2>
+            <h2>Loading results from our AI. Recommendations can take up to 1 minute to generate...</h2>
           </div>
         </>
         :

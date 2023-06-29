@@ -9,7 +9,7 @@ import { AppContext } from '../context/appContext';
 const RecommendationPage = () => {
   const [showModal, setShowModal] = useState(false)
   const [feedback, setFeedback] = useState('')
-  const { state, dispatch } = useContext(AppContext)
+  const { state } = useContext(AppContext)
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
 
@@ -35,16 +35,22 @@ const RecommendationPage = () => {
       <>
         {alert &&
           <div className={`alert ${alertClass()} alert-dismissible mb-4`} role="alert">
-            A simple primary alert—check it out!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            {alert}
+            <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         }
         <div className={styles.textLeft}>
+          <h3 style={{ marginBottom: '18px'}}>
+            Here is your recommendation!
+          </h3>
           <p className={styles.intro}>
-            <h3 style={{ marginBottom: '18px'}}>
-              Here is your recommendation!
-            </h3>
-            {state.recommendation.chatGptResponse}
+            {state.recommendation.intro}
+            <div className="my-4">
+            { state.recommendation.steps.map((step) => {
+                return <p>{step}</p>
+              })}
+            </div>
+            {state.recommendation.ending}
           </p>
         </div>
         <div className={styles.textLeft}>
@@ -58,10 +64,10 @@ const RecommendationPage = () => {
               backgroundColor: 'rgba(0, 0, 0, .5)'
             }}
         >
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header bg-info text-white">
-              <h5 class="modal-title"> 
+          <div className="modal-dialog modal-lg">
+            <div className="modal-content">
+              <div className="modal-header bg-info text-white">
+              <h5 className="modal-title"> 
                   Tell us about your recommendation
               </h5>
                 <button onClick={() => setShowModal(false)}
@@ -78,7 +84,7 @@ const RecommendationPage = () => {
                   &times;
                 </button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <textarea
                   onChange={(e) => setFeedback(e.target.value)}
                   style={{

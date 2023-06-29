@@ -12,8 +12,6 @@ import * as styles from "../components/index.module.css"
 const Input = (props) => {
   const { label, question, target, handleUpdate } = props;
 
-  console.log('target', target)
-
   return (
     <>
       <label htmlFor={label}>
