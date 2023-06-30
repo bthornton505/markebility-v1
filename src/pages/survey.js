@@ -55,7 +55,7 @@ const SurveyPage = () => {
     }
 
     setSelectedOptions(selected)
-    setRecommendation({ ...recommendation, [field]: selected });
+    setRecommendation({ ...recommendation, [field]: selected.join(', ') });
   }
 
   const back = () => {
