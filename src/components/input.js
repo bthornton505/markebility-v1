@@ -19,7 +19,7 @@ const Input = (props) => {
           {label}
         </h2>
       </label>
-      <input type="text" id={label} name={label} 
+      <input className="mt-3" type="text" id={label} name={label} 
         value={target}
         onChange={(e) => handleUpdate(question, e.target.value)}
         style={{

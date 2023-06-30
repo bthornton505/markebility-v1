@@ -19,7 +19,7 @@ const MultiSelect = (props) => {
           {label}
         </h2>
       </label>
-      <div className="form-check">
+      <div className="form-check mt-3">
         <input 
           className="form-check-input" 
           type="checkbox" 

@@ -11,6 +11,7 @@ import axios from 'axios';
 import { AppContext } from '../context/appContext';
 import TextBox from '../components/textBox';
 import MultiSelect from '../components/multiselect';
+import RadioSelect from '../components/radioselect';
 
 const SurveyPage = () => {
   const { state, dispatch, updateUserState } = useContext(AppContext)
@@ -27,14 +28,6 @@ const SurveyPage = () => {
     email: state.email
   })
   const [recommendation, setRecommendation] = useState(state.recommendationReq)
-
-  const goals = [
-    'select one',
-    'Increase brand awareness',
-    'Drive website traffic and lead generation',
-    'Boost sales and revenue',
-    'Enhance customer loyalty and retention'
-  ]
 
   const updateUser = (field, value) => {
     updateUserState({ ...user, [field]: value })
@@ -132,7 +125,7 @@ const SurveyPage = () => {
     } else if (index === 2) {
       return <TextBox label={questions['businessOffering']} target={recommendation['businessOffering']} question="businessOffering" handleUpdate={handleAnswers}/>
     } else if (index === 3) {
-      return <Select label={questions['marketingGoal']} options={goals} target={recommendation['marketingGoal']} question="marketingGoal" handleUpdate={handleAnswers}/>
+      return <RadioSelect label={questions['marketingGoal']} target={recommendation['marketingGoal']} question="marketingGoal" handleUpdate={handleAnswers}/>
     } else if (index === 4) {
       return <MultiSelect label={questions['currentMarketingActivities']} question="currentMarketingActivities" handleUpdate={handleMultiSelect}/>
     } else if (index === 5) {

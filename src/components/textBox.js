@@ -19,7 +19,7 @@ const TextBox = (props) => {
           {label}
         </h2>
       </label>
-      <textarea type="text" id={label} name={label}
+      <textarea className="mt-3" type="text" id={label} name={label}
         rows="4" cols="50"
         value={target}
         onChange={(e) => handleUpdate(question, e.target.value)}
