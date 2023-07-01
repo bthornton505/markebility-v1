@@ -103,7 +103,6 @@ const SurveyPage = () => {
         payload: data.chatGptResponse
       })
       navigate("/recommendation")
-      setLoading(false)
     })
     .catch(function (error) {
       console.log(error);
