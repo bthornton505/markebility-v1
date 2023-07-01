@@ -172,11 +172,11 @@ const SurveyPage = () => {
 
             <div className={`row ${styles.textLeft}`} style={{ marginTop: '20px' }}>
               {index > 0 &&
-                <div className={'col-md-3 col-sm-2'}>
-                  <Button name={'Back'} onClick={() => back()}/>
+                <div className={'col-md-3 col-5'}>
+                  <Button name={'Back'} bgColor={'rgb(51, 135, 249)'} onClick={() => back()}/>
                 </div>
               }
-              <div className={'col-md-3 col-sm-2'}>
+              <div className={'col-md-3 col-5'}>
                 {index >= 6 ?
                   <Button name={'Done'} onClick={() => submit()}/>
                   :

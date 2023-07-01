@@ -9,17 +9,17 @@ import React, { useState } from 'react';
 import "./layout.css"
 
 const Button = (props) => {
-  const { name, onClick } = props;
+  const { name, onClick, bgColor } = props;
 
   return (
     <button onClick={() => onClick ? onClick() : null}
-      className="btn btn-block"
+      className="btn"
       style={{
         padding: '5px 25px',
         margin: '10px 0',
         borderRadius: '3px',
         borderWidth: '0',
-        backgroundColor: 'rgb(123, 220, 124)',
+        backgroundColor: bgColor ? bgColor : 'rgb(123, 220, 124)',
         color: 'white'
       }}
     >
