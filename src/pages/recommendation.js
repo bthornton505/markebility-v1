@@ -46,9 +46,20 @@ const RecommendationPage = () => {
           <p className={styles.intro}>
             {state.recommendation.intro}
             <div className="my-4">
-              {state.recommendation && state.recommendation.steps.map((step) => {
-                return <p>{step}</p>
-              })}
+              <h5>Brand Strategy:</h5>
+              <p>{state.recommendation.brandStrategy.replace('Brand Strategy:','')}</p>
+              <br/>
+              <h5>Creative Strategy:</h5>
+              <p>{state.recommendation.creativeStrategy.replace('Creative Strategy:','')}</p>
+              <br/>
+              <h5>Organic Meda Strategy:</h5>
+              <p>{state.recommendation.organicMediaStrategy.replace('Organic Media Strategy:','')}</p>
+              <br/>
+              <h5>Paid Media Strategy:</h5>
+              <p>{state.recommendation.paidMediaStrategy.replace('Paid Media Strategy:','')}</p>
+              <br/>
+              <h5>Other Marketing Recommendations:</h5>
+              <p>{state.recommendation.otherMarketingRecommendations.replace('Other Marketing Recommendations:','')}</p>
             </div>
             {state.recommendation.ending}
           </p>

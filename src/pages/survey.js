@@ -95,7 +95,7 @@ const SurveyPage = () => {
   const submit = async () => {
     setLoading(true)
     await updateRecommendation();
-    await axios.get(`${process.env.GATSBY_API_URI}/recommendations`, recommendation)
+    await axios.post(`${process.env.GATSBY_API_URI}/recommendations`, recommendation)
     .then(function (response) {
       const data = response.data
       dispatch({
