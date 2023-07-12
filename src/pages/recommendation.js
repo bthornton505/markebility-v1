@@ -13,6 +13,12 @@ const RecommendationPage = () => {
   const [alert, setAlert] = useState(null)
   const [error, setError] = useState(null)
 
+  const brandStrategy = state.recommendation ? state.recommendation.brandStrategy.replace('Brand Strategy:','') : '';
+  const creativeStrategy = state.recommendation ? state.recommendation.creativeStrategy.replace('Creative Strategy:','') : '';
+  const organicMediaStrategy = state.recommendation ? state.recommendation.organicMediaStrategy.replace('Organic Media Strategy:','') : '';
+  const paidMediaStrategy = state.recommendation ? state.recommendation.paidMediaStrategy.replace('Paid Media Strategy:','') : '';
+  const otherMarketingRecommendations = state.recommendation ? state.recommendation.otherMarketingRecommendations.replace('Other Marketing Recommendations:','') : '';
+
   const alertClass = () => {
     return alert ? 'alert-success' : 'alert-danger'
   }
@@ -47,19 +53,19 @@ const RecommendationPage = () => {
             {state.recommendation.intro}
             <div className="my-4">
               <h5>Brand Strategy:</h5>
-              <p>{state.recommendation.brandStrategy.replace('Brand Strategy:','')}</p>
+              <p>{brandStrategy}</p>
               <br/>
               <h5>Creative Strategy:</h5>
-              <p>{state.recommendation.creativeStrategy.replace('Creative Strategy:','')}</p>
+              <p>{creativeStrategy}</p>
               <br/>
               <h5>Organic Meda Strategy:</h5>
-              <p>{state.recommendation.organicMediaStrategy.replace('Organic Media Strategy:','')}</p>
+              <p>{organicMediaStrategy}</p>
               <br/>
               <h5>Paid Media Strategy:</h5>
-              <p>{state.recommendation.paidMediaStrategy.replace('Paid Media Strategy:','')}</p>
+              <p>{paidMediaStrategy}</p>
               <br/>
               <h5>Other Marketing Recommendations:</h5>
-              <p>{state.recommendation.otherMarketingRecommendations.replace('Other Marketing Recommendations:','')}</p>
+              <p>{otherMarketingRecommendations}</p>
             </div>
             {state.recommendation.ending}
           </p>
