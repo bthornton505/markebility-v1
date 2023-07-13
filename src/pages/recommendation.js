@@ -52,20 +52,20 @@ const RecommendationPage = () => {
           <p className={styles.intro}>
             {state.recommendation.intro}
             <div className="my-4">
-              {/* <h5>Brand Strategy:</h5> */}
-              <p>{state.recommendation.brandStrategy}</p>
-              {/* <br/> */}
-              {/* <h5>Creative Strategy:</h5> */}
-              <p>{state.recommendation.creativeStrategy}</p>
-              {/* <br/> */}
-              {/* <h5>Organic Meda Strategy:</h5> */}
-              <p>{state.recommendation.organicMediaStrategy}</p>
-              {/* <br/> */}
-              {/* <h5>Paid Media Strategy:</h5> */}
-              <p>{state.recommendation.paidMediaStrategy}</p>
-              {/* <br/> */}
-              {/* <h5>Other Marketing Recommendations:</h5> */}
-              <p>{state.recommendation.otherMarketingRecommendations}</p>
+              <h5>Brand Strategy:</h5>
+              <p>{brandStrategy}</p>
+              <br/>
+              <h5>Creative Strategy:</h5>
+              <p>{creativeStrategy}</p>
+              <br/>
+              <h5>Organic Meda Strategy:</h5>
+              <p>{organicMediaStrategy}</p>
+              <br/>
+              <h5>Paid Media Strategy:</h5>
+              <p>{paidMediaStrategy}</p>
+              <br/>
+              <h5>Other Marketing Recommendations:</h5>
+              <p>{otherMarketingRecommendations}</p>
             </div>
             {state.recommendation.ending}
           </p>
