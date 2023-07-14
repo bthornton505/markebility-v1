@@ -58,7 +58,7 @@ const RecommendationPage = () => {
               <h5>Creative Strategy:</h5>
               <p>{creativeStrategy}</p>
               <br/>
-              <h5>Organic Meda Strategy:</h5>
+              <h5>Organic Media Strategy:</h5>
               <p>{organicMediaStrategy}</p>
               <br/>
               <h5>Paid Media Strategy:</h5>

@@ -166,7 +166,7 @@ const SurveyPage = () => {
             borderRadius: '25px',
             boxShadow: '10px 10px'
           }}>
-            <div className="col-md-6">
+            <div className="col-md-10">
               {Question()}
             </div>
 
